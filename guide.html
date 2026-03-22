@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>纸间 · 入门指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F7F4ED;--paper-dark:#EDE9DF;--paper-mid:#E5DFD2;--paper-card:#FDFAF4;
+  --ink:#2C2416;--ink-mid:#5A4F3A;--ink-light:#9A8E78;--ink-faint:#C0B8A4;
+  --line:#D8D2C4;
+  --rust:#8B3A1E;--rust-l:#C46B45;--rust-f:rgba(139,58,30,.1);
+  --teal:#2A6B6B;--teal-l:#4A9A9A;--teal-f:rgba(42,107,107,.1);
+  --gold:#A07820;--gold-l:#C4962A;--gold-f:rgba(160,120,32,.1);
+  --clip:#1D5C8A;--clip-f:rgba(29,92,138,.1);
+  --violet:#5B4BB0;--violet-f:rgba(91,75,176,.1);
+  --shadow:2px 4px 16px rgba(44,36,22,.09);
+  --shadow-lg:4px 12px 36px rgba(44,36,22,.13);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--ink-faint);border-radius:3px}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(247,244,237,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:0 5vw;height:52px;display:flex;align-items:center;gap:20px}
+.nav-logo{font-family:'ZCOOL XiaoWei',serif;font-size:18px;letter-spacing:3px;color:var(--ink);display:flex;align-items:center;gap:7px;text-decoration:none}
+.nav-mark{width:22px;height:22px;border:1.5px solid var(--rust);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--rust)}
+.nav-links{margin-left:auto;display:flex;gap:6px}
+.nav-link{font-size:12px;color:var(--ink-light);text-decoration:none;padding:5px 10px;border-radius:3px;transition:all .15s}
+.nav-link:hover{background:var(--paper-mid);color:var(--ink)}
+.nav-cta{background:var(--rust);color:#fff;border:none;padding:6px 14px;border-radius:3px;font-size:12px;font-family:inherit;cursor:pointer;text-decoration:none;transition:background .15s}
+.nav-cta:hover{background:var(--ink)}
+
+/* ── HERO ── */
+.hero{padding:88px 5vw 72px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--paper-dark) 0%,var(--paper) 100%)}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(44,36,22,.04) 27px,rgba(44,36,22,.04) 28px);pointer-events:none}
+.hero-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);background:var(--rust-f);border:1px solid rgba(139,58,30,.2);padding:4px 12px;border-radius:2px;margin-bottom:24px}
+.hero-title{font-family:'ZCOOL XiaoWei',serif;font-size:clamp(36px,6vw,64px);letter-spacing:6px;color:var(--ink);margin-bottom:10px;line-height:1.2}
+.hero-title span{color:var(--rust)}
+.hero-sub{font-family:'Noto Serif SC',serif;font-size:clamp(15px,2vw,18px);color:var(--ink-mid);margin-bottom:36px;font-weight:300;max-width:540px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-pri{background:var(--ink);color:#fff;border:none;padding:11px 24px;border-radius:3px;font-size:14px;font-family:inherit;cursor:pointer;text-decoration:none;transition:background .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-pri:hover{background:var(--rust)}
+.btn-sec{background:none;color:var(--ink-mid);border:1px solid var(--line);padding:11px 24px;border-radius:3px;font-size:14px;font-family:inherit;cursor:pointer;text-decoration:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-sec:hover{background:var(--paper-mid);color:var(--ink)}
+.hero-note{margin-top:20px;font-size:12px;color:var(--ink-faint);display:flex;align-items:center;justify-content:center;gap:14px}
+.hero-note span{display:flex;align-items:center;gap:4px}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:72px 5vw;max-width:1100px;margin:0 auto}
+.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:clamp(22px,3vw,30px);font-weight:500;color:var(--ink);margin-bottom:8px}
+.section-sub{font-size:14px;color:var(--ink-light);margin-bottom:40px;max-width:580px;line-height:1.8}
+.divider{border:none;border-top:1px solid var(--line);margin:0}
+
+/* ── FEATURE GRID ── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:36px}
+.feat-card{background:var(--paper-card);border:1px solid var(--line);border-radius:3px;padding:22px;box-shadow:var(--shadow);transition:all .18s;position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0}
+.feat-card.c-clip::before{background:var(--clip)}
+.feat-card.c-rust::before{background:var(--rust-l)}
+.feat-card.c-teal::before{background:var(--teal-l)}
+.feat-card.c-gold::before{background:var(--gold-l)}
+.feat-card.c-violet::before{background:var(--violet)}
+.feat-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.feat-icon{font-size:22px;margin-bottom:12px;display:block}
+.feat-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.feat-desc{font-size:13px;color:var(--ink-mid);line-height:1.7}
+.feat-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+.feat-tag{font-size:10px;padding:2px 7px;border-radius:2px;background:var(--paper-mid);color:var(--ink-light);border:1px solid var(--line)}
+
+/* ── STEPS ── */
+.steps{margin-top:40px;display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:48px 1fr;gap:0 24px;padding-bottom:32px;position:relative}
+.step:last-child{padding-bottom:0}
+.step-line{position:absolute;left:22px;top:46px;bottom:0;width:1px;background:var(--line)}
+.step:last-child .step-line{display:none}
+.step-num{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0;font-family:'Noto Serif SC',serif;position:relative;z-index:1}
+.step-num.clip{background:var(--clip)}
+.step-num.rust{background:var(--rust)}
+.step-num.teal{background:var(--teal)}
+.step-num.gold{background:var(--gold)}
+.step-num.violet{background:var(--violet)}
+.step-body{padding-top:8px}
+.step-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--ink-mid);line-height:1.8;margin-bottom:10px}
+.step-tip{display:flex;align-items:flex-start;gap:7px;background:var(--paper-mid);border-radius:3px;padding:9px 12px;font-size:12px;color:var(--ink-mid);line-height:1.6;border-left:2px solid var(--ink-faint)}
+.step-tip.c-clip{background:var(--clip-f);border-left-color:var(--clip)}
+.step-tip.c-gold{background:var(--gold-f);border-left-color:var(--gold)}
+.step-tip.c-teal{background:var(--teal-f);border-left-color:var(--teal)}
+.step-tip.c-rust{background:var(--rust-f);border-left-color:var(--rust)}
+.step-img{background:var(--paper-dark);border:1px solid var(--line);border-radius:3px;padding:16px;margin-top:12px;font-size:12px;color:var(--ink-faint);font-family:monospace;line-height:1.8;overflow-x:auto}
+.step-img .k{color:var(--teal);font-weight:500}
+.step-img .v{color:var(--rust)}
+.step-img .c{color:var(--ink-faint)}
+
+/* ── SCENARIO CARDS ── */
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:36px}
+.sc-card{background:var(--paper-card);border:1px solid var(--line);border-radius:3px;padding:20px;transition:all .18s;cursor:default}
+.sc-card:hover{box-shadow:var(--shadow);border-color:var(--teal-l)}
+.sc-scene{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.sc-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.sc-flow{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.sc-step{font-size:11px;padding:3px 9px;border-radius:2px;background:var(--paper-mid);color:var(--ink-mid);border:1px solid var(--line)}
+.sc-arrow{font-size:10px;color:var(--ink-faint)}
+.sc-result{font-size:12px;color:var(--teal);background:var(--teal-f);padding:6px 10px;border-radius:2px;border:1px solid rgba(42,107,107,.18)}
+
+/* ── SHORTCUT TABLE ── */
+.kbd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:24px}
+.kbd-row{display:flex;align-items:center;gap:12px;background:var(--paper-card);border:1px solid var(--line);padding:10px 14px;border-radius:3px}
+.kbd{display:inline-flex;gap:4px}
+.key{background:var(--paper-dark);border:1px solid var(--line);border-bottom:2px solid var(--ink-faint);border-radius:3px;padding:2px 8px;font-size:11px;font-family:monospace;color:var(--ink-mid);white-space:nowrap}
+.kbd-desc{font-size:13px;color:var(--ink-mid);flex:1}
+
+/* ── TIPS ── */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:28px}
+.tip-card{background:var(--paper-card);border:1px solid var(--line);border-radius:3px;padding:18px}
+.tip-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.tip-label.gold{color:var(--gold)}
+.tip-label.teal{color:var(--teal)}
+.tip-label.rust{color:var(--rust)}
+.tip-label.clip{color:var(--clip)}
+.tip-title{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:500;margin-bottom:6px;color:var(--ink)}
+.tip-body{font-size:12px;color:var(--ink-mid);line-height:1.8}
+.tip-code{background:var(--paper-dark);border-radius:2px;padding:2px 6px;font-family:monospace;font-size:11px;color:var(--teal)}
+
+/* ── COZE GUIDE ── */
+.coze-box{background:var(--clip-f);border:1px solid rgba(29,92,138,.2);border-radius:3px;padding:24px;margin-top:32px}
+.coze-title{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:500;color:var(--clip);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.coze-sub{font-size:13px;color:var(--ink-mid);margin-bottom:20px;line-height:1.7}
+.coze-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cs-item{background:var(--paper-card);border:1px solid rgba(29,92,138,.15);border-radius:3px;padding:14px}
+.cs-num{font-size:10px;font-weight:500;color:var(--clip);margin-bottom:5px;letter-spacing:1px}
+.cs-text{font-size:12px;color:var(--ink-mid);line-height:1.6}
+.cs-text strong{color:var(--ink)}
+
+/* ── DIMENSION TABLE ── */
+.dim-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:13px}
+.dim-table th{text-align:left;padding:9px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--line);font-weight:500}
+.dim-table td{padding:11px 14px;border-bottom:1px solid var(--line-light);vertical-align:top}
+.dim-table tr:last-child td{border-bottom:none}
+.dim-table tr:hover td{background:var(--paper-mid)}
+.dim-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+
+/* ── FAQ ── */
+.faq{margin-top:32px;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--paper-card);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.faq-q{padding:14px 18px;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .15s}
+.faq-q:hover{background:var(--paper-mid)}
+.faq-q .arrow{font-size:11px;color:var(--ink-faint);transition:transform .2s}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 18px 14px;font-size:13px;color:var(--ink-mid);line-height:1.8;border-top:1px solid var(--line)}
+.faq-item.open .faq-a{display:block}
+
+/* ── FOOTER ── */
+.footer{background:var(--paper-dark);border-top:1px solid var(--line);padding:36px 5vw;text-align:center}
+.footer-logo{font-family:'ZCOOL XiaoWei',serif;font-size:20px;letter-spacing:4px;color:var(--ink-mid);margin-bottom:8px}
+.footer-sub{font-size:12px;color:var(--ink-faint);margin-bottom:16px}
+.footer-links{display:flex;gap:16px;justify-content:center}
+.footer-link{font-size:12px;color:var(--ink-light);text-decoration:none;transition:color .15s}
+.footer-link:hover{color:var(--ink)}
+
+/* ── UI MOCKUP ── */
+.mockup{background:var(--paper-dark);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-lg);margin:28px 0}
+.mock-bar{background:var(--paper-dark);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:8px}
+.mock-dots{display:flex;gap:5px}
+.mock-dot{width:10px;height:10px;border-radius:50%}
+.mock-dot.r{background:#ff5f57}
+.mock-dot.y{background:#febc2e}
+.mock-dot.g{background:#28c840}
+.mock-url{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:4px 10px;font-size:11px;color:var(--ink-faint);font-family:monospace}
+.mock-body{padding:16px;display:flex;gap:12px}
+.mock-sidebar{width:110px;flex-shrink:0}
+.mock-nav{height:10px;background:var(--paper-mid);border-radius:2px;margin-bottom:6px}
+.mock-nav.active{background:var(--rust-f);border-left:2px solid var(--rust)}
+.mock-main{flex:1}
+.mock-topbar{background:var(--paper-dark);border-bottom:1px solid var(--line);padding:8px;display:flex;gap:6px;border-radius:2px 2px 0 0;margin-bottom:8px}
+.mock-btn{height:18px;border-radius:2px;background:var(--paper-mid)}
+.mock-btn.blue{background:rgba(29,92,138,.2)}
+.mock-btn.sm{width:40px}
+.mock-btn.md{width:70px}
+.mock-btn.lg{width:100px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mock-card{background:var(--paper-card);border:1px solid var(--line);border-radius:2px;padding:8px;position:relative}
+.mock-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.mock-card.r::before{background:var(--rust-l)}
+.mock-card.t::before{background:var(--teal-l)}
+.mock-card.g::before{background:var(--gold-l)}
+.mock-card.b::before{background:var(--clip)}
+.mock-line{height:7px;background:var(--paper-mid);border-radius:2px;margin-bottom:5px}
+.mock-line.short{width:60%}
+.mock-line.xs{height:5px;width:40%;background:var(--line)}
+
+/* ── CLIP MOCKUP ── */
+.clip-mockup{background:var(--paper-card);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow);margin-top:20px}
+.cm-tabs{display:flex;border-bottom:1px solid var(--line);background:var(--paper-dark)}
+.cm-tab{padding:9px 14px;font-size:12px;color:var(--ink-light);border-bottom:2px solid transparent;cursor:default}
+.cm-tab.a{color:var(--clip);border-bottom-color:var(--clip)}
+.cm-body{padding:16px}
+.cm-field{height:9px;background:var(--paper-mid);border-radius:2px;margin-bottom:8px}
+.cm-ta{height:55px;background:var(--paper-mid);border-radius:2px;margin-bottom:12px}
+.cm-ai{background:var(--gold-f);border:1px solid rgba(160,120,32,.18);border-radius:2px;padding:10px;margin-bottom:12px}
+.cm-ai-head{height:8px;width:80px;background:rgba(160,120,32,.3);border-radius:1px;margin-bottom:7px}
+.cm-ai-line{height:6px;background:rgba(160,120,32,.2);border-radius:1px;margin-bottom:4px}
+.cm-footer{display:flex;gap:7px;justify-content:flex-end}
+.cm-save{background:var(--clip);height:28px;width:110px;border-radius:3px}
+
+@media(max-width:640px){
+  .feat-grid,.scenario-grid,.tips-grid,.kbd-grid,.coze-steps{grid-template-columns:1fr}
+  .hero{padding:56px 5vw 48px}
+  .nav-links .nav-link{display:none}
+  .mock-cards{grid-template-columns:repeat(2,1fr)}
+  .rw{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#top">
+    <span class="nav-mark">纸</span>
+    纸间
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#features">功能</a>
+    <a class="nav-link" href="#quickstart">快速上手</a>
+    <a class="nav-link" href="#scenarios">使用场景</a>
+    <a class="nav-link" href="#shortcuts">快捷键</a>
+    <a class="nav-link" href="#faq">FAQ</a>
+    <a class="nav-cta" href="zhijian-v3.html" target="_blank">打开应用 →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-label">入门指南 · Getting Started</div>
+  <h1 class="hero-title">纸<span>间</span></h1>
+  <p class="hero-sub">为「技术转型 AI 产品经理」设计的个人知识库<br>双链笔记 × AI 剪藏 × 能力雷达 × 知识图谱</p>
+  <div class="hero-btns">
+    <a class="btn-pri" href="zhijian-v3.html" target="_blank">🚀 立即使用</a>
+    <a class="btn-sec" href="#quickstart">📖 快速上手</a>
+  </div>
+  <div class="hero-note">
+    <span>✦ 纯前端单文件</span>
+    <span>✦ 无需服务器</span>
+    <span>✦ 数据本地存储</span>
+    <span>✦ GitHub Pages 一键部署</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- APP MOCKUP -->
+<div class="section" style="padding-top:52px;padding-bottom:52px">
+  <div class="mockup">
+    <div class="mock-bar">
+      <div class="mock-dots"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div></div>
+      <div class="mock-url">zhijian-kb/index.html</div>
+    </div>
+    <div class="mock-body">
+      <div class="mock-sidebar">
+        <div class="mock-nav active" style="height:14px;width:90%"></div>
+        <div class="mock-nav" style="width:80%;margin-bottom:14px"></div>
+        <div class="mock-nav" style="width:70%"></div>
+        <div class="mock-nav" style="width:85%"></div>
+        <div class="mock-nav" style="width:65%;margin-bottom:14px"></div>
+        <div class="mock-nav" style="width:75%"></div>
+        <div class="mock-nav" style="width:80%"></div>
+      </div>
+      <div class="mock-main">
+        <div class="mock-topbar">
+          <div class="mock-btn blue md"></div>
+          <div class="mock-btn sm"></div>
+          <div class="mock-btn sm"></div>
+          <div class="mock-btn sm"></div>
+          <div class="mock-btn sm"></div>
+        </div>
+        <div class="mock-cards">
+          <div class="mock-card r"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+          <div class="mock-card t"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+          <div class="mock-card g"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+          <div class="mock-card b"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+          <div class="mock-card r"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+          <div class="mock-card t"><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-line xs"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:12px;color:var(--ink-faint);margin-top:10px">三栏布局：左侧导航 / 中间知识库 / 右侧编辑器，支持移动端抽屉式折叠</p>
+</div>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<div class="section" id="features">
+  <div class="section-label">功能概览</div>
+  <h2 class="section-title">每个功能，都为 AI PM 转型而设计</h2>
+  <p class="section-sub">从碎片信息的快速收集，到知识图谱的系统化构建，覆盖你从「程序员」转型为「AI 产品经理」的完整学习路径。</p>
+
+  <div class="feat-grid">
+    <div class="feat-card c-clip">
+      <span class="feat-icon">⬡</span>
+      <div class="feat-title">快速剪藏 · AI 自动提炼</div>
+      <div class="feat-desc">顶部蓝色按钮一键唤起。支持粘贴文字、输入 URL、粘贴 Coze 文档、导入 Markdown。配置 Anthropic API Key 后，自动生成标题、摘要、3-5 条要点、标签和能力维度。</div>
+      <div class="feat-tags"><span class="feat-tag">小红书面经</span><span class="feat-tag">Coze文档</span><span class="feat-tag">网页文章</span><span class="feat-tag">AI提炼</span></div>
+    </div>
+
+    <div class="feat-card c-teal">
+      <span class="feat-icon">🔗</span>
+      <div class="feat-title">双链笔记 · 知识互联</div>
+      <div class="feat-desc">在任意笔记正文中输入 <code style="background:var(--teal-f);color:var(--teal);padding:1px 5px;border-radius:2px;font-size:11px">[[笔记标题]]</code> 即可建立双向链接。系统自动维护反向链接列表，让知识形成网络而非孤岛。</div>
+      <div class="feat-tags"><span class="feat-tag">双向链接</span><span class="feat-tag">反向链接</span><span class="feat-tag">知识网络</span></div>
+    </div>
+
+    <div class="feat-card c-gold">
+      <span class="feat-icon">📡</span>
+      <div class="feat-title">AI PM 能力雷达</div>
+      <div class="feat-desc">六维能力自评图：技术理解力、产品设计力、数据分析力、商业洞察力、沟通协作力、AI 工具熟练度。点击进度条任意位置即可调整分值，建议每月评一次，追踪成长曲线。</div>
+      <div class="feat-tags"><span class="feat-tag">能力评估</span><span class="feat-tag">月度自评</span><span class="feat-tag">成长追踪</span></div>
+    </div>
+
+    <div class="feat-card c-rust">
+      <span class="feat-icon">🔥</span>
+      <div class="feat-title">AI 热点追踪面板</div>
+      <div class="feat-desc">内置 Agent、物理AI、多模态、推理模型、MCP协议、AI基础设施等热点卡片，标注趋势状态（上升/稳定/新兴）和有效期。点击任意热点可直接搜索相关笔记。</div>
+      <div class="feat-tags"><span class="feat-tag">Agent</span><span class="feat-tag">多模态</span><span class="feat-tag">MCP</span><span class="feat-tag">推理模型</span></div>
+    </div>
+
+    <div class="feat-card c-teal">
+      <span class="feat-icon">🕸️</span>
+      <div class="feat-title">知识图谱</div>
+      <div class="feat-desc">图谱视图将所有笔记渲染为节点网络。节点颜色代表能力维度，节点大小代表链接数（关联度越高越大）。点击任意节点直接打开对应笔记。</div>
+      <div class="feat-tags"><span class="feat-tag">可视化</span><span class="feat-tag">关系图</span><span class="feat-tag">维度着色</span></div>
+    </div>
+
+    <div class="feat-card c-rust">
+      <span class="feat-icon">📅</span>
+      <div class="feat-title">日历视图</div>
+      <div class="feat-desc">双层展示：月历格子中有笔记的日期会标注小色点；下方时间轴按日期倒序排列全部笔记，附维度标签。剪藏内容与普通笔记用不同颜色区分。</div>
+      <div class="feat-tags"><span class="feat-tag">月历</span><span class="feat-tag">时间轴</span><span class="feat-tag">学习记录</span></div>
+    </div>
+
+    <div class="feat-card c-gold">
+      <span class="feat-icon">✦</span>
+      <div class="feat-title">AI 相似推荐</div>
+      <div class="feat-desc">打开任意笔记后，右侧编辑器底部自动分析并推荐相似笔记，综合考量：标签重叠、能力维度匹配、双链关系、内容关键词相似度，并显示相似度百分比。</div>
+      <div class="feat-tags"><span class="feat-tag">相似度</span><span class="feat-tag">维度权重</span><span class="feat-tag">自动推荐</span></div>
+    </div>
+
+    <div class="feat-card c-clip">
+      <span class="feat-icon">⌁</span>
+      <div class="feat-title">Prompt 模板库</div>
+      <div class="feat-desc">编辑器内置五套模板：CRISPE框架、CoT思维链、AI PM需求描述（PRD格式）、价值转化公式、面试STAR回答。点击一键复制到剪贴板，即刻在 AI 工具中使用。</div>
+      <div class="feat-tags"><span class="feat-tag">CRISPE</span><span class="feat-tag">CoT</span><span class="feat-tag">PRD模板</span><span class="feat-tag">STAR</span></div>
+    </div>
+
+    <div class="feat-card c-teal">
+      <span class="feat-icon">⏳</span>
+      <div class="feat-title">知识有效期</div>
+      <div class="feat-desc">每篇笔记可设置有效期标注：长期（方法论）、约1年（框架）、约3月（具体数据）、热点（AI动态）。避免知识库「熵增」，定期清理过时内容。</div>
+      <div class="feat-tags"><span class="feat-tag">防熵增</span><span class="feat-tag">知识保质</span><span class="feat-tag">定期清理</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- QUICKSTART -->
+<div class="section" id="quickstart">
+  <div class="section-label">快速上手</div>
+  <h2 class="section-title">五步，从零到第一条知识入库</h2>
+  <p class="section-sub">整个流程不超过 10 分钟。建议先用示例笔记感受一下，再开始录入自己的内容。</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">打开应用，浏览示例笔记</div>
+        <div class="step-desc">直接用浏览器打开 <code style="background:var(--paper-mid);padding:1px 6px;border-radius:2px;font-size:12px">zhijian-v3.html</code>，无需安装、无需服务器。首次打开会自动加载 6 篇示例笔记，涵盖 Agent、面经、Coze文档、转型方法论等主题，可以直接点开感受交互。</div>
+        <div class="step-tip">💡 数据存在浏览器 localStorage，换浏览器或清缓存会丢失。建议定期导出，或部署到 GitHub Pages 后使用。</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-num clip">2</div>
+      <div class="step-body">
+        <div class="step-title">配置 API Key，解锁 AI 自动提炼</div>
+        <div class="step-desc">点击右上角 <strong>⚙ 设置</strong>，填入你的 Anthropic API Key（格式：<code style="background:var(--paper-mid);padding:1px 5px;border-radius:2px;font-size:12px">sk-ant-…</code>）。Key 仅存储在本地，不会上传任何服务器。配置后，每次剪藏内容时 Claude 会自动提炼摘要、要点和标签。</div>
+        <div class="step-tip c-clip">🔑 没有 API Key 也可以正常使用，只是剪藏时没有 AI 提炼功能，内容仍会正常保存。可以去 <a href="https://console.anthropic.com" target="_blank" style="color:var(--clip)">console.anthropic.com</a> 申请。</div>
+        <div class="step-img">
+          <span class="c"># 设置弹窗里填入：</span><br>
+          <span class="k">API Key:</span> <span class="v">sk-ant-api03-xxxxxxxx</span><br>
+          <span class="k">默认来源:</span> <span class="v">网页 / 小红书 / Coze</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-num rust">3</div>
+      <div class="step-body">
+        <div class="step-title">用「快速剪藏」录入第一条内容</div>
+        <div class="step-desc">点击顶部蓝色「快速剪藏」按钮（或按 <code style="background:var(--paper-mid);padding:1px 5px;border-radius:2px;font-size:12px">⌘D</code>），选择内容来源，将你今天在小红书看到的面经、Coze 推送的学习文档，或者任意文章段落粘贴进去，点击「AI 处理并保存」。</div>
+        <div class="clip-mockup">
+          <div class="cm-tabs">
+            <span class="cm-tab a">粘贴文字</span>
+            <span class="cm-tab">网页URL</span>
+            <span class="cm-tab">Coze 文档</span>
+            <span class="cm-tab">Markdown</span>
+          </div>
+          <div class="cm-body">
+            <div class="cm-field" style="width:120px"></div>
+            <div class="cm-field"></div>
+            <div class="cm-ta"></div>
+            <div class="cm-ai">
+              <div class="cm-ai-head"></div>
+              <div class="cm-ai-line"></div>
+              <div class="cm-ai-line" style="width:70%"></div>
+              <div class="cm-ai-line" style="width:85%"></div>
+            </div>
+            <div class="cm-footer"><div class="cm-save"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-num teal">4</div>
+      <div class="step-body">
+        <div class="step-title">建立双链，让知识互相关联</div>
+        <div class="step-desc">打开任意笔记进入编辑模式，在正文中输入 <code style="background:var(--teal-f);color:var(--teal);padding:1px 6px;border-radius:2px;font-size:12px">[[</code> 加上另一篇笔记的标题，系统会自动高亮为可点击的链接。或者点击编辑器顶部的「⌁ 链接」按钮插入。</div>
+        <div class="step-tip c-teal">✦ 建议每篇笔记至少建立 1-2 个双链。链接越多，知识图谱越有价值，AI 推荐的准确度也会提高。</div>
+        <div class="step-img">
+          <span class="c"># 在编辑器中输入：</span><br>
+          这与 <span class="v">[[AI产品能力边界清单]]</span> 中的判断框架相似<br>
+          <br>
+          <span class="c"># 系统自动变成可点击的蓝色链接，</span><br>
+          <span class="c"># 对方笔记底部也会出现反向链接 ←</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-num gold">5</div>
+      <div class="step-body">
+        <div class="step-title">查看雷达图，做月度能力自评</div>
+        <div class="step-desc">点击顶部「雷达」视图，可以看到六维能力评估图。点击每条进度条调整当月分值（1-10分）。随着笔记积累，下方「知识库维度分布」柱状图会实时反映你在哪个方向的积累更多。建议每月初做一次自评。</div>
+        <div class="step-tip c-gold">📊 如果某个维度分数连续两月没有提升，说明这个方向需要主动补充学习内容。可以去「热点追踪」面板找当前值得关注的方向。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COZE INTEGRATION -->
+<div class="section" id="coze" style="padding-top:52px">
+  <div class="section-label">Coze 集成</div>
+  <h2 class="section-title">每天的 Coze 学习文档，两分钟入库</h2>
+  <p class="section-sub">Coze 每天为你生成学习文档？通过「Coze 文档」标签快速导入，AI 自动整理成结构化知识卡片。</p>
+
+  <div class="coze-box">
+    <div class="coze-title">🤖 Coze → 纸间 标准操作流程</div>
+    <div class="coze-sub">每天操作约 2 分钟，养成习惯后可快速将 AI 推送的内容转化为自己的知识资产。</div>
+    <div class="coze-steps">
+      <div class="cs-item">
+        <div class="cs-num">STEP 01</div>
+        <div class="cs-text">打开 Coze，找到今日为你生成的<strong>学习文档</strong>或学习计划推送</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">STEP 02</div>
+        <div class="cs-text"><strong>全选复制</strong>（Ctrl+A → Ctrl+C）文档全部内容</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">STEP 03</div>
+        <div class="cs-text">点击「快速剪藏」→ 切换到 <strong>「Coze 文档」</strong>标签</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">STEP 04</div>
+        <div class="cs-text">粘贴内容，点击「<strong>AI 处理并保存</strong>」自动提炼要点</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">STEP 05</div>
+        <div class="cs-text">在生成的笔记中补充 <strong>[[双链]]</strong>，关联到已有知识</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">未来计划</div>
+        <div class="cs-text">待 Coze 开放 Webhook，可配置<strong>自动推送</strong>，无需手动操作</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="margin-top:72px">
+
+<!-- SCENARIOS -->
+<div class="section" id="scenarios">
+  <div class="section-label">使用场景</div>
+  <h2 class="section-title">你最可能用到的五个场景</h2>
+  <p class="section-sub">每个场景都有完整的操作路径，从信息收集到知识沉淀，只需几步。</p>
+
+  <div class="scenario-grid">
+    <div class="sc-card">
+      <div class="sc-scene">场景 01 · 日常学习</div>
+      <div class="sc-title">小红书面经 → 知识卡片</div>
+      <div class="sc-flow">
+        <span class="sc-step">复制面经内容</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">快速剪藏·小红书</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">AI提炼要点</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">补充双链</span>
+      </div>
+      <div class="sc-result">✦ 自动提炼面试核心考点，关联到能力框架笔记</div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-scene">场景 02 · Coze 文档</div>
+      <div class="sc-title">每日学习计划 → 结构化笔记</div>
+      <div class="sc-flow">
+        <span class="sc-step">复制Coze文档</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">Coze标签粘贴</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">AI识别主题</span>
+      </div>
+      <div class="sc-result">✦ 自动分类到技术维度，提炼今日学习要点</div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-scene">场景 03 · 热点追踪</div>
+      <div class="sc-title">AI 新进展 → 有效期标注</div>
+      <div class="sc-flow">
+        <span class="sc-step">剪藏新闻/文章</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">设置有效期「热点」</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">图谱关联</span>
+      </div>
+      <div class="sc-result">✦ 过期热点自动标注，不会与长期知识混淆</div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-scene">场景 04 · 月度复盘</div>
+      <div class="sc-title">雷达自评 → 学习方向调整</div>
+      <div class="sc-flow">
+        <span class="sc-step">打开雷达视图</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">调整六维分值</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">对比维度分布</span>
+      </div>
+      <div class="sc-result">✦ 发现薄弱维度，针对性补充学习内容</div>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-scene">场景 05 · 面试准备</div>
+      <div class="sc-title">反模式库 + STAR 模板</div>
+      <div class="sc-flow">
+        <span class="sc-step">侧边栏·反模式</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">Prompt库·STAR模板</span>
+        <span class="sc-arrow">→</span>
+        <span class="sc-step">PRD输出</span>
+      </div>
+      <div class="sc-result">✦ 面试案例随时调取，一键复制结构化回答模板</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DIMENSION GUIDE -->
+<div class="section" id="dimensions">
+  <div class="section-label">能力维度说明</div>
+  <h2 class="section-title">五个维度，对应 AI PM 的完整能力图谱</h2>
+  <p class="section-sub">每篇笔记都应该归属到一个能力维度。这决定了它在知识图谱中的颜色，也影响 AI 相似推荐的权重。</p>
+
+  <table class="dim-table">
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>颜色标识</th>
+        <th>适合收录的内容</th>
+        <th>典型笔记举例</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>技术理解</strong></td>
+        <td><span class="dim-dot" style="background:#1a5c8a"></span>蓝色</td>
+        <td>LLM 原理、API 使用、架构设计、模型能力评估</td>
+        <td>Transformer 自注意力机制、RAG 架构解析、Token 计费原理</td>
+      </tr>
+      <tr>
+        <td><strong>产品设计</strong></td>
+        <td><span class="dim-dot" style="background:#2A6B6B"></span>绿色</td>
+        <td>用户研究、交互设计、需求文档、产品框架</td>
+        <td>AI 产品 PRD 模板、峰终定律应用、用户访谈方法</td>
+      </tr>
+      <tr>
+        <td><strong>商业落地</strong></td>
+        <td><span class="dim-dot" style="background:#A07820"></span>金色</td>
+        <td>商业模式、定价策略、ROI 分析、市场竞品</td>
+        <td>AI 产品成本计算、To B 定价模型、竞品分析框架</td>
+      </tr>
+      <tr>
+        <td><strong>反模式</strong></td>
+        <td><span class="dim-dot" style="background:#8B3A1E"></span>红色</td>
+        <td>失败案例、避坑指南、负面教材</td>
+        <td>客服过度自动化翻车案例、AI 幻觉导致的信任危机</td>
+      </tr>
+      <tr>
+        <td><strong>输出</strong></td>
+        <td><span class="dim-dot" style="background:#5B4BB0"></span>紫色</td>
+        <td>PRD 草稿、文章草稿、分享内容、面试准备</td>
+        <td>AI 功能需求文档、转型心得文章、面试 STAR 案例</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- SHORTCUTS -->
+<div class="section" id="shortcuts">
+  <div class="section-label">快捷键</div>
+  <h2 class="section-title">记住这几个，效率翻倍</h2>
+
+  <div class="kbd-grid">
+    <div class="kbd-row">
+      <div class="kbd"><span class="key">⌘</span><span class="key">K</span></div>
+      <div class="kbd-desc">聚焦搜索框，全文搜索</div>
+    </div>
+    <div class="kbd-row">
+      <div class="kbd"><span class="key">⌘</span><span class="key">N</span></div>
+      <div class="kbd-desc">新建空白笔记</div>
+    </div>
+    <div class="kbd-row">
+      <div class="kbd"><span class="key">⌘</span><span class="key">S</span></div>
+      <div class="kbd-desc">保存当前编辑中的笔记</div>
+    </div>
+    <div class="kbd-row">
+      <div class="kbd"><span class="key">⌘</span><span class="key">D</span></div>
+      <div class="kbd-desc">打开「快速剪藏」抽屉</div>
+    </div>
+    <div class="kbd-row">
+      <div class="kbd"><span class="key">Esc</span></div>
+      <div class="kbd-desc">关闭编辑器 / 关闭弹窗</div>
+    </div>
+    <div class="kbd-row" style="grid-column:span 1">
+      <div class="kbd"><span class="key">[[</span></div>
+      <div class="kbd-desc">在编辑器内输入，插入双链</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--ink-faint);margin-top:12px">Windows 用户将 ⌘ 替换为 Ctrl</p>
+</div>
+
+<hr class="divider">
+
+<!-- TIPS -->
+<div class="section" id="tips">
+  <div class="section-label">使用技巧</div>
+  <h2 class="section-title">让知识库越用越有价值的四个习惯</h2>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-label gold">✦ 习惯一</div>
+      <div class="tip-title">每篇笔记至少建立 1 个双链</div>
+      <div class="tip-body">孤立的笔记是「知识坟场」。即使只是写 <span class="tip-code">[[相关笔记名]]</span> 一句话，也比没有链接强十倍。AI 相似推荐的准确度与双链密度正相关。</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-label teal">→ 习惯二</div>
+      <div class="tip-title">热点笔记设「热点」有效期</div>
+      <div class="tip-body">AI 领域变化极快。Agent 的最佳实践三个月可能就过时了。设置有效期后，卡片会显示保质期提醒，定期做「过期笔记清理」，防止知识库熵增。</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-label rust">⚠ 习惯三</div>
+      <div class="tip-title">每遇 AI 翻车案例，立即归入「反模式」</div>
+      <div class="tip-body">反模式库是 AI PM 最独特的竞争力之一。失败案例比成功案例更有价值——面试时能讲出「我知道这个方向的坑」，比只会说「我知道怎么做」印象深刻得多。</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-label clip">⬡ 习惯四</div>
+      <div class="tip-title">「输出」维度倒逼学习质量</div>
+      <div class="tip-body">每隔 2-3 周，把某个知识点整理成「输出」维度的笔记——哪怕只是一篇 200 字的心得。写出来的过程会暴露你真正不理解的地方，远比单纯收集有价值。</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<div class="section" id="faq">
+  <div class="section-label">常见问题</div>
+  <h2 class="section-title">FAQ</h2>
+
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">我的数据存在哪里？会丢失吗？<span class="arrow">▼</span></div>
+      <div class="faq-a">数据存储在浏览器的 <strong>localStorage</strong> 中，不会上传任何服务器，完全本地化。但这也意味着：清除浏览器缓存、换浏览器、或换设备时，数据会丢失。建议将 html 文件上传到 GitHub，并定期通过「导出」功能备份笔记内容。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">没有 API Key 可以用吗？<span class="arrow">▼</span></div>
+      <div class="faq-a">完全可以。没有 API Key 时，剪藏功能仍然正常工作——内容会直接保存，只是不会自动生成 AI 摘要和标签。所有其他功能（双链、图谱、雷达、日历、相似推荐等）均不依赖 API Key。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">API Key 安全吗？会被上传吗？<span class="arrow">▼</span></div>
+      <div class="faq-a">API Key 只存储在你本地浏览器的 localStorage 中，且只在你主动点击「AI 处理并保存」时才会直接从浏览器向 Anthropic API 发起请求。不经过任何中间服务器，代码完全开源可审计。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">能从 Coze 自动同步吗？<span class="arrow">▼</span></div>
+      <div class="faq-a">目前 Coze 没有开放供个人使用的知识库导出 API，所以暂时需要手动复制粘贴。流程只需 2 分钟：打开 Coze → 全选复制 → 粘贴到「Coze 文档」标签 → AI 处理。后续若 Coze 开放 Webhook，可以配置自动推送，实现真正的自动化。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">手机上可以用吗？<span class="arrow">▼</span></div>
+      <div class="faq-a">可以。应用已做移动端适配：侧边栏变为左上角汉堡菜单呼出的抽屉，编辑器在手机上全屏展示，剪藏抽屉也是全屏模式。最佳体验是用手机浏览器打开部署在 GitHub Pages 上的版本，方便随时收藏内容。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">如何部署到 GitHub Pages？<span class="arrow">▼</span></div>
+      <div class="faq-a">1. 在 GitHub 创建新仓库（如 zhijian-kb）；2. 将 zhijian-v3.html 重命名为 index.html 后上传；3. 进入仓库 Settings → Pages → Source 选 main 分支 → Save；4. 约 1 分钟后访问 <code style="background:var(--paper-mid);padding:1px 5px;border-radius:2px">https://你的用户名.github.io/zhijian-kb</code>。每次 git push 自动更新，免费且永久。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">知识图谱节点位置每次都变？<span class="arrow">▼</span></div>
+      <div class="faq-a">是的，目前知识图谱使用简化的环形布局（链接数最多的节点居中，其余节点分布在环上），每次渲染会有微小随机偏移。完整的力导向图（Force-directed graph）在后续版本中规划实现，届时节点位置会稳定下来。</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- GITHUB SETUP -->
+<div class="section" id="deploy" style="padding-bottom:80px">
+  <div class="section-label">部署到 GitHub</div>
+  <h2 class="section-title">三分钟，让知识库在线随时可用</h2>
+  <p class="section-sub">GitHub Pages 免费托管，每次更新推送即自动部署。手机也能访问，再也不用找 html 文件了。</p>
+
+  <div class="step-img" style="margin-top:24px;font-size:13px;line-height:2">
+    <span class="c"># 1. 初始化仓库</span><br>
+    <span class="k">git init</span> zhijian-kb<br>
+    <span class="k">cd</span> zhijian-kb<br><br>
+    <span class="c"># 2. 将文件改名为 index.html（GitHub Pages 默认入口）</span><br>
+    <span class="k">cp</span> zhijian-v3.html <span class="v">index.html</span><br>
+    <span class="k">cp</span> guide.html guide.html<br><br>
+    <span class="c"># 3. 提交并推送</span><br>
+    <span class="k">git add</span> .<br>
+    <span class="k">git commit</span> -m <span class="v">"feat: 纸间 v3 AI PM 知识库"</span><br>
+    <span class="k">git remote add origin</span> https://github.com/<span class="v">你的用户名</span>/zhijian-kb.git<br>
+    <span class="k">git push</span> -u origin main<br><br>
+    <span class="c"># 4. 在 GitHub 仓库页面：</span><br>
+    <span class="c"># Settings → Pages → Source: main / root → Save</span><br>
+    <span class="c"># 约1分钟后访问：https://你的用户名.github.io/zhijian-kb</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">纸 间</div>
+  <div class="footer-sub">为 AI PM 转型者设计的个人知识库 · 纯前端 · 无依赖 · 开源</div>
+  <div class="footer-links">
+    <a class="footer-link" href="zhijian-v3.html" target="_blank">打开应用</a>
+    <a class="footer-link" href="#top">回到顶部</a>
+    <a class="footer-link" href="https://github.com" target="_blank">GitHub</a>
+  </div>
+  <p style="font-size:11px;color:var(--ink-faint);margin-top:16px">MIT License · 数据存储于本地浏览器 · API Key 不经过任何服务器</p>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+// Smooth scroll highlight for nav
+const sections=document.querySelectorAll('[id]');
+const navLinks=document.querySelectorAll('.nav-link[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  navLinks.forEach(l=>{l.style.fontWeight=l.getAttribute('href')==='#'+current?'500':'400';l.style.color=l.getAttribute('href')==='#'+current?'var(--ink)':'';});
+},{passive:true});
+</script>
+</body>
+</html>
